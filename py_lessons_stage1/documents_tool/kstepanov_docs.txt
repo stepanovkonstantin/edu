@@ -1,0 +1,7 @@
+passport,2207 876234,Vasya Pupkin
+invoice,11-2,Gena Bukin
+insurance,10006,Pavel Dudkin
+passport,4521 123456,Konstantin Stepanov
+passport,4521 456789,Dasha Myskina
+insurance,770524 1234123412,Natasha Rostova
+driverid,77BA889089,Mad Maxx

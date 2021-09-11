@@ -1,9 +1,8 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-*.txt
+*_backup
+*_old
 /tmp/
 test*.py
-
-
-
+/documents_tool/tmp/*

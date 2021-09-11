@@ -1,15 +1,15 @@
-documents = [
-    {"type": "passport", "number": "2207 876234", "name": "Василий Гупкин"},
-    {"type": "invoice", "number": "11-2", "name": "Геннадий Покемонов"},
-    {"type": "insurance", "number": "10006", "name": "Аристарх Павлов"}
-    {"type": "passport", "number": "4521 123456", "name": "Константин Степанов"}
-]
-
-directories = {
-    '1': ['2207 876234', '11-2'],
-    '2': ['10006'],
-    '3': []
-}
+# documents = [
+#     {"type": "passport", "number": "2207 876234", "name": "Василий Гупкин"},
+#     {"type": "invoice", "number": "11-2", "name": "Геннадий Покемонов"},
+#     {"type": "insurance", "number": "10006", "name": "Аристарх Павлов"},
+#     {"type": "passport", "number": "4521 123456", "name": "Константин Степанов"}
+# ]
+#
+# directories = {
+#     '1': ['2207 876234', '11-2'],
+#     '2': ['10006'],
+#     '3': []
+# }
 
 def person(documents_list):
     doc_num= input('Введите номер документа > ')
@@ -136,4 +136,20 @@ def main(documents_list, directories_list):
         else:
             print('Введена неверная команда!')
 
+documents_input = open('saved/documents.txt', 'r')
+documents = []
+for line in documents_input.readlines():
+    linenoends = line.replace('\n','')
+    doc_split = list(linenoends.split(','))
+    doc_dict = dict(type=doc_split[0], number=doc_split[1], name=doc_split[2])
+    documents.append(doc_dict)
+# print(documents)
+
+# directories_input = open('directories.txt', 'r')
+# directories = {}
+# for line in directories_input.readlines():
+#     linenoends = line.replace('\n','')
+#     dir_split = list(linenoends.split(','))
+#     directories[dir_split[0]] = dir_split[1:]
+# # print(directories)
 main(documents, directories)
