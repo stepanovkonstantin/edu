@@ -109,6 +109,20 @@ def add_shelf(directories_list):
         print('Полка с таким номером уже существует!')
     return
 
+def list_docs_by_numbers(documents_list, *doc_numbers):
+    foundcount = 0
+    print('Результаты поиска :')
+    for doc_num in doc_numbers:
+        isfound = False
+        for document in documents_list:
+            if doc_num == document["number"]:
+                print(f'"{document["number"]}"\t{document["type"]}\t\t{document["name"]}')
+                isfound = True
+                foundcount += 1
+        if isfound == False:
+            print(f'"{doc_num}" не найден')
+    return foundcount
+
 def read_docs_file(doc_file):
     documents_input = open(doc_file, 'r+')
     documents_list = []
@@ -156,6 +170,7 @@ def main(catalogue):
       't': ['type', 'Поиск документов по типу'],
       'p': ['person', 'Поиск имени владельца по номеру документа'],
       'n': ['number', 'Поиск номера полки для существующего документа'],
+      'b': ['batch', 'Поиск документов по списку номеров'],
       'a': ['add', 'Добавление в каталог нового документа'],
       'd': ['del', 'Удаление документа из каталога'],
       'm': ['move', 'Перемещение документа между полками'],
@@ -209,6 +224,20 @@ def main(catalogue):
                 print('Документы не найдены!')
             else:
                 print(f'всего найдено: {docs_count} документов')
+        elif user_choise == 'b' or user_choise == 'batch':
+            user_input_docs = []
+            print('Вводите номера документов по одному. Для запуска поиска введите - s :')
+            while True:
+                user_input_doc_num = input('> ')
+                if user_input_doc_num == 's':
+                    break
+                else:
+                    user_input_docs.append(user_input_doc_num)
+            foundcount = list_docs_by_numbers(documents_list, *user_input_docs)
+            if foundcount == 0:
+                print('Ни одного документа не найдено!')
+            else:
+                print(f'Найдено {foundcount} документов')
         elif user_choise == 'a' or user_choise == 'add':
             print('# Добавление нового документа')
             add(documents_list, directories_list)
